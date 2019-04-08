@@ -32,10 +32,10 @@ patients."
 ## Output data
 
 we have four classes:  
-0 = “Squamous_Epithelium”  
-1 = “Intestinal_metaplasia”  
-2 = “Gastric_metaplasia”  
-3 = “Dysplasia_and_Cancer”  
+0 = “Squamous_Epithelium”   (1469 pictures)  
+1 = “Intestinal_metaplasia” (3177 pictures)  
+2 = “Gastric_metaplasia”    (1206 pictures)  
+3 = “Dysplasia_and_Cancer”  (3594 pictures)  
 
 They guarantee that if an image acquired from a patient is in the training set, there is no image
 acquired from the same patient in any test sets.
@@ -58,14 +58,14 @@ We just wanted to know how many pictures each patiens has and which picture numb
 p <- ggplot(TrainingSet_20aimVO, aes(x=patientNumber))+
      geom_histogram(binwidth = 1)+
      ylab("Number of pictures")+
-     xlim(0,60)+
+     xlim(-1,61)+
      ggtitle("Training set")
 
 
 q <- ggplot(test_data_order, aes(x=patientNumber))+
      geom_histogram(binwidth = 1)+
      ylab("Number of pictures")+
-     xlim(0,60)+
+     xlim(-1,61)+
      ggtitle("Test set")
 
 grid.arrange(p, q)
@@ -77,12 +77,13 @@ grid.arrange(p, q)
 p <- ggplot(TrainingSet_20aimVO, aes(x=imageNumber))+
      geom_histogram(binwidth = 1)+
      ylab("Number of patients")+
+     xlim(-1,675)+
      ggtitle("Training set")
 
 q <- ggplot(test_data_order, aes(x=imageNumber))+
      geom_histogram(binwidth = 1)+
      ylab("Number of patients")+
-     xlim(0, 644)+
+     xlim(-1, 675)+
      ggtitle("Test set")
 
 grid.arrange(p, q)
@@ -93,16 +94,17 @@ We are also interested if all pictures of a patient have the same label?
 
 ```{r, echo=FALSE}
 
-p <- ggplot(TrainingSet_20aimVO, aes(x=class_number))+
+
+q <- ggplot(TrainingSet_20aimVO, aes(x=classNumber))+
      geom_histogram(binwidth = 1)+
      facet_wrap(~patientNumber)
-p
+q
 
 ```
 
-Patient number 12, 32 and 51 contain labels 2 and 3.  
-Patient number 11 contains labels 1 and 2.  
-Patient number 53 contains labels 2 and 4.  
+Patient number 12, 32 and 51 contain labels 1 and 2.  
+Patient number 11 contains labels 0 and 1.  
+Patient number 53 contains labels 1 and 3.  
 The other 39 patients only have one label assigned.  
 
 ## Slideshow training set
