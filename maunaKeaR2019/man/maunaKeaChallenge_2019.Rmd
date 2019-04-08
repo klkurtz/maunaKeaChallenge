@@ -1,0 +1,140 @@
+---
+title: "Mauna Kea Challenge 2019"
+author: "Kurtz"
+date: "4 April 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(gridExtra)
+
+knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_knit$set(root.dir = getwd())
+
+load("../data/TrainingSet_20aimVO.rda")
+load("../data/test_data_order.rda")
+
+```
+
+## Input data
+
+We have images from 61 patients.
+Each image is a 2D matrix x_i_p where i is an index ranging from 0 to the number of images acquired from partient p.  
+patient = p  
+i from 0 to n = number of images from patient p
+
+Interesting description from the data description:  
+"The rationale for including a patient index is that there might be some level of correlation
+between images acquired from one single patient which is larger than from two different
+patients."
+
+## Output data
+
+we have four classes:  
+0 = “Squamous_Epithelium”  
+1 = “Intestinal_metaplasia”  
+2 = “Gastric_metaplasia”  
+3 = “Dysplasia_and_Cancer”  
+
+They guarantee that if an image acquired from a patient is in the training set, there is no image
+acquired from the same patient in any test sets.
+
+## Metric
+
+Non weighted Multiclass accuracy =
+(Number of images in the test set automatically assigned to the correct class) /
+(Number of images in the test set)
+
+
+## Picture and patient numbers
+
+We just wanted to know how many pictures each patiens has and which picture number occurs most often.
+
+```{r, echo=FALSE}
+#getwd()
+
+
+p <- ggplot(TrainingSet_20aimVO, aes(x=patientNumber))+
+     geom_histogram(binwidth = 1)+
+     ylab("Number of pictures")+
+     xlim(0,60)+
+     ggtitle("Training set")
+
+
+q <- ggplot(test_data_order, aes(x=patientNumber))+
+     geom_histogram(binwidth = 1)+
+     ylab("Number of pictures")+
+     xlim(0,60)+
+     ggtitle("Test set")
+
+grid.arrange(p, q)
+```
+
+
+
+```{r, echo=FALSE}
+p <- ggplot(TrainingSet_20aimVO, aes(x=imageNumber))+
+     geom_histogram(binwidth = 1)+
+     ylab("Number of patients")+
+     ggtitle("Training set")
+
+q <- ggplot(test_data_order, aes(x=imageNumber))+
+     geom_histogram(binwidth = 1)+
+     ylab("Number of patients")+
+     xlim(0, 644)+
+     ggtitle("Test set")
+
+grid.arrange(p, q)
+```
+
+We are also interested if all pictures of a patient have the same label?
+
+
+```{r, echo=FALSE}
+
+p <- ggplot(TrainingSet_20aimVO, aes(x=class_number))+
+     geom_histogram(binwidth = 1)+
+     facet_wrap(~patientNumber)
+p
+
+```
+
+Patient number 12, 32 and 51 contain labels 2 and 3.  
+Patient number 11 contains labels 1 and 2.  
+Patient number 53 contains labels 2 and 4.  
+The other 39 patients only have one label assigned.  
+
+## Slideshow training set
+
+### Patient 0 - Class 0
+
+![Patient 0 - Class 0](../slideshow/TrainingSet/p0_c0.gif)
+
+### Patient 30 - Class 1
+
+![Patient 30 - Class 1](../slideshow/TrainingSet/p30_c1.gif)
+
+
+### Patient 10 - Class 2
+
+![Patient 10 - Class 2](../slideshow/TrainingSet/p10_c2.gif)
+
+
+### Patient 44 - Class 3
+
+![Patient 44 - Class 3](../slideshow/TrainingSet/p44_c3.gif)
+
+
+
+## Slideshow test set
+
+### Patient 21 - Class ?
+
+![Patient 21](../slideshow/TestSet/p21.gif)
+
+### Patient 57 - Class ?
+
+![Patient 57](../slideshow/TestSet/p57.gif)
+
+
