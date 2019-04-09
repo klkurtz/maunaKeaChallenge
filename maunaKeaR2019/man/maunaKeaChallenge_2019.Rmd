@@ -109,34 +109,80 @@ The other 39 patients only have one label assigned.
 
 ## Slideshow training set
 
-### Patient 0 - Class 0
+### Patient 0, 1 - Class 0
 
-![Patient 0 - Class 0](../slideshow/TrainingSet/p0_c0.gif)
+```{r image_grobs, fig.show = "hold", out.width = "30%", fig.align = "default", echo=F}
 
-### Patient 30 - Class 1
+#![Patient 0 - Class 0](../slideshow/TrainingSet/p0_c0.gif)
+#![Patient 1 - Class 0](../slideshow/TrainingSet/p1_c0.gif)
 
-![Patient 30 - Class 1](../slideshow/TrainingSet/p30_c1.gif)
+# see: https://community.rstudio.com/t/how-to-stack-two-images-horizontally-in-r-markdown/18941
+
+knitr::include_graphics("../slideshow/TrainingSet/p0_c0.gif")
+
+knitr::include_graphics("../slideshow/TrainingSet/p1_c0.gif")
 
 
-### Patient 10 - Class 2
-
-![Patient 10 - Class 2](../slideshow/TrainingSet/p10_c2.gif)
+```
 
 
-### Patient 44 - Class 3
+### Patient 30, 7 - Class 1
 
-![Patient 44 - Class 3](../slideshow/TrainingSet/p44_c3.gif)
+```{r image_grobs2, fig.show = "hold", out.width = "30%", fig.align = "default", echo=F}
 
+knitr::include_graphics("../slideshow/TrainingSet/p30_c1.gif")
+
+knitr::include_graphics("../slideshow/TrainingSet/p7_c1.gif")
+
+#![Patient 30 - Class 1](../slideshow/TrainingSet/p30_c1.gif)
+
+```
+
+
+### Patient 10, 24 - Class 2
+
+```{r image_grobs3, fig.show = "hold", out.width = "30%", fig.align = "default", echo=F}
+
+knitr::include_graphics("../slideshow/TrainingSet/p10_c2.gif")
+
+knitr::include_graphics("../slideshow/TrainingSet/p24_c2.gif")
+
+#![Patient 10 - Class 2](../slideshow/TrainingSet/p10_c2.gif)
+
+```
+
+
+### Patient 44, 3 - Class 3
+
+```{r image_grobs4, fig.show = "hold", out.width = "30%", fig.align = "default", echo=F}
+
+knitr::include_graphics("../slideshow/TrainingSet/p44_c3.gif")
+
+knitr::include_graphics("../slideshow/TrainingSet/p3_c3.gif")
+
+#![Patient 44 - Class 3](../slideshow/TrainingSet/p44_c3.gif)
+
+```
 
 
 ## Slideshow test set
 
-### Patient 21 - Class ?
+### Patient 21, 57 - Class ?
 
-![Patient 21](../slideshow/TestSet/p21.gif)
+```{r image_grobs5, fig.show = "hold", out.width = "30%", fig.align = "default", echo=FALSE}
 
-### Patient 57 - Class ?
+knitr::include_graphics("../slideshow/TestSet/p21.gif")
 
-![Patient 57](../slideshow/TestSet/p57.gif)
+knitr::include_graphics("../slideshow/TestSet/p57.gif")
+
+#![Patient 21](../slideshow/TestSet/p21.gif)
+#![Patient 57](../slideshow/TestSet/p57.gif)
+
+
+```
+
+
+
+
 
 
